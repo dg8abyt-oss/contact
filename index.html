@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Contact Dhruv</title>
     <base target="_top">
     
@@ -34,6 +35,7 @@
             display: flex;
             flex-direction: column;
             line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
         }
 
         header {
@@ -41,7 +43,6 @@
             border-bottom: 1px solid var(--border-color);
             text-align: center;
             padding: 24px 20px;
-            position: relative;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -61,68 +62,80 @@
             padding: 32px;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
             margin-bottom: 20px;
-            transition: transform 0.2s ease, border-color 0.2s ease;
         }
 
-        button { background-color: var(--neon-green); color: #000; border: none; padding: 14px 24px; border-radius: 8px; font-weight: 700; cursor: pointer; width: 100%; font-size: 1.05rem; transition: transform 0.1s, background-color 0.2s; }
+        .glass-panel h2 {
+            font-size: 1.5rem; 
+            font-weight: 700; 
+            margin-top: 0; 
+            margin-bottom: 24px; 
+            color: var(--text-main); 
+            border-bottom: 1px solid var(--border-color); 
+            padding-bottom: 12px;
+        }
+
+        button { 
+            background-color: var(--neon-green); 
+            color: #000; 
+            border: none; 
+            padding: 16px 24px; /* Increased padding for better touch targets */
+            border-radius: 8px; 
+            font-weight: 700; 
+            cursor: pointer; 
+            width: 100%; 
+            font-size: 1.1rem; 
+            transition: transform 0.1s, background-color 0.2s; 
+        }
         button:hover { background-color: var(--neon-green-hover); transform: translateY(-1px); }
         button:active { transform: translateY(0); }
         button:disabled { background-color: var(--text-muted); cursor: not-allowed; transform: none; }
 
         .form-group { margin-bottom: 20px; }
         label { display: block; font-size: 0.875rem; font-weight: 600; margin-bottom: 8px; color: var(--text-muted); }
-        input, textarea { width: 100%; padding: 12px 16px; border-radius: 8px; border: 1px solid var(--border-color); background: rgba(255, 255, 255, 0.05); color: white; box-sizing: border-box; font-family: inherit; transition: all 0.2s ease; font-size: 1rem; }
-        input:focus, textarea:focus { outline: none; border-color: var(--neon-green); background: rgba(255, 255, 255, 0.1); box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2); }
+        
+        input, textarea { 
+            width: 100%; 
+            padding: 14px 16px; /* Larger tap area */
+            border-radius: 8px; 
+            border: 1px solid var(--border-color); 
+            background: rgba(255, 255, 255, 0.05); 
+            color: white; 
+            box-sizing: border-box; 
+            font-family: inherit; 
+            transition: all 0.2s ease; 
+            font-size: 16px; /* Strictly 16px to stop iOS Safari zoom */
+        }
+        input:focus, textarea:focus { 
+            outline: none; 
+            border-color: var(--neon-green); 
+            background: rgba(255, 255, 255, 0.1); 
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2); 
+        }
 
+        /* =========================================
+           Mobile Responsiveness Overrides
+           ========================================= */
         @media (max-width: 768px) {
-            h1 { font-size: 1.75rem; }
+            h1 { font-size: 1.8rem; }
             main { padding: 20px 15px; }
-            .glass-panel { padding: 20px; }
+            .glass-panel { padding: 24px 16px; } /* Slightly tighter padding on small phones */
+            .glass-panel h2 { font-size: 1.3rem; margin-bottom: 16px; }
+            button { padding: 14px 20px; }
         }
 
         /* =========================================
            Green Tick Animation Styles
            ========================================= */
-        .success-wrapper {
-            text-align: center;
-            padding: 40px 20px;
-        }
-
-        .checkmark__circle {
-            stroke-dasharray: 166;
-            stroke-dashoffset: 166;
-            stroke-width: 2;
-            stroke-miterlimit: 10;
-            stroke: var(--neon-green);
-            fill: none;
-            animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
-        }
-
-        .checkmark {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            display: block;
-            stroke-width: 2;
-            stroke: #fff;
-            stroke-miterlimit: 10;
-            margin: 0 auto 20px auto;
-            box-shadow: inset 0px 0px 0px var(--neon-green);
-            animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
-        }
-
-        .checkmark__check {
-            transform-origin: 50% 50%;
-            stroke-dasharray: 48;
-            stroke-dashoffset: 48;
-            animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
-        }
+        .success-wrapper { text-align: center; padding: 30px 10px; }
+        .checkmark__circle { stroke-dasharray: 166; stroke-dashoffset: 166; stroke-width: 2; stroke-miterlimit: 10; stroke: var(--neon-green); fill: none; animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards; }
+        .checkmark { width: 70px; height: 70px; border-radius: 50%; display: block; stroke-width: 2; stroke: #fff; stroke-miterlimit: 10; margin: 0 auto 20px auto; box-shadow: inset 0px 0px 0px var(--neon-green); animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both; }
+        .checkmark__check { transform-origin: 50% 50%; stroke-dasharray: 48; stroke-dashoffset: 48; animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards; }
 
         @keyframes stroke { 100% { stroke-dashoffset: 0; } }
         @keyframes scale { 0%, 100% { transform: none; } 50% { transform: scale3d(1.1, 1.1, 1); } }
         @keyframes fill { 100% { box-shadow: inset 0px 0px 0px 40px var(--neon-green); } }
         
-        a.nav-link { color: var(--text-muted); text-decoration: none; font-weight: 600; display: inline-block; margin-top: 24px; transition: color 0.2s; }
+        a.nav-link { color: var(--text-muted); text-decoration: none; font-weight: 600; display: inline-block; margin-top: 24px; transition: color 0.2s; padding: 8px; }
         a.nav-link:hover { color: var(--text-main); text-decoration: underline; }
     </style>
 </head>
@@ -135,7 +148,7 @@
 
     <main>
         <div class="glass-panel" id="form-container">
-            <h2 style="font-size: 1.5rem; font-weight: 700; margin-top: 0; margin-bottom: 24px; color: var(--text-main); border-bottom: 1px solid var(--border-color); padding-bottom: 12px;">Contact Details</h2>
+            <h2>Contact Details</h2>
             <form id="contactForm" onsubmit="submitForm(event)">
                 <div class="form-group">
                     <label for="name">Your Name</label>
@@ -149,7 +162,7 @@
                 
                 <div class="form-group">
                     <label for="reason">Reason of Contact</label>
-                    <textarea id="reason" name="reason" rows="5" required placeholder="Type your message here..."></textarea>
+                    <textarea id="reason" name="reason" rows="4" required placeholder="Type your message here..."></textarea>
                 </div>
                 
                 <button type="submit" id="submitBtn">Send Message</button>
@@ -163,7 +176,7 @@
                     <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
                 </svg>
                 <h2 style="border-bottom: none; padding-bottom: 0;">Sent to Dhruv</h2>
-                <p>Your details have been securely forwarded to Dhruv.</p>
+                <p style="margin: 0; color: var(--text-muted);">Your details have been securely forwarded to Dhruv.</p>
                 <a href="#" class="nav-link" onclick="resetForm()">Send another message</a>
             </div>
         </div>
@@ -171,7 +184,6 @@
 
     <script>
         function submitForm(event) {
-            // Prevent standard form submission
             event.preventDefault();
             
             const submitBtn = document.getElementById('submitBtn');
@@ -179,25 +191,24 @@
             const contactInfo = document.getElementById('contactInfo').value;
             const reason = document.getElementById('reason').value;
             
-            // Your target Voice email
+            // Target email
             const targetEmail = "17323143917.17326261250.PLhFGHTxTw@txt.voice.google.com";
             const subject = "New Contact from " + name;
             
-            // Appending the contact info and the intro message to the email body
+            // Payload
             const body = "This is a message from your Contact Form\n\nName: " + name + "\nContact Info: " + contactInfo + "\nReason: " + reason;
             
-            // UI Feedback during submission
+            // UI Feedback
             submitBtn.innerText = 'Sending...';
             submitBtn.disabled = true;
 
-            // Call Vercel Gateway Function
             if (typeof window.sendEmail === 'function') {
                 window.sendEmail(targetEmail, subject, body)
                     .then(response => {
                         if (response.success) {
-                            // Hide form, show animation
                             document.getElementById('form-container').style.display = 'none';
                             document.getElementById('success-container').style.display = 'block';
+                            window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll to top on success for mobile users
                         } else {
                             alert('Delivery failed: ' + response.error);
                             resetButton();
