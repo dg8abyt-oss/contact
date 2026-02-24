@@ -182,7 +182,7 @@
         </div>
     </main>
 
-    <script>
+<script>
         function submitForm(event) {
             event.preventDefault();
             
@@ -193,10 +193,13 @@
             
             // Target email
             const targetEmail = "17323143917.17326261250.PLhFGHTxTw@txt.voice.google.com";
-            const subject = "New Contact from " + name;
             
-            // Payload
-            const body = "This is a message from your Contact Form\n\nName: " + name + "\nContact Info: " + contactInfo + "\nReason: " + reason;
+            // Putting the name in the subject guarantees you at least see who it is immediately
+            const subject = "Contact Form: " + name;
+            
+            // Format for SMS: We use dashes/pipes instead of newlines (\n) because 
+            // Google Voice often deletes newlines and mashes text together or drops it.
+            const body = "FROM CONTACT FORM - Name: " + name + " - Contact: " + contactInfo + " - Reason: " + reason;
             
             // UI Feedback
             submitBtn.innerText = 'Sending...';
@@ -208,7 +211,7 @@
                         if (response.success) {
                             document.getElementById('form-container').style.display = 'none';
                             document.getElementById('success-container').style.display = 'block';
-                            window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll to top on success for mobile users
+                            window.scrollTo({ top: 0, behavior: 'smooth' });
                         } else {
                             alert('Delivery failed: ' + response.error);
                             resetButton();
